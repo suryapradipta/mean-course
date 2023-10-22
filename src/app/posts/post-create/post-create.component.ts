@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-post-create',
@@ -7,15 +7,20 @@ import { Component } from '@angular/core';
 })
 export class PostCreateComponent {
   // property
-  newPost='NO CONTENT';
-  enteredValue='';
+  enteredTitle = '';
+  enteredContent = '';
+
+  // decorator ‘output’ to pass data from child to parent component
+  @Output() postCreated = new EventEmitter();
+
 
   // handler
   onAddPost() {
-    // 2. [property] = *value*    or one way binding
-    // this.newPost = 'The user\'s post';
-
-    this.newPost = this.enteredValue;
+    const post = {
+      title: this.enteredTitle,
+      content: this.enteredContent,
+    }
+    this.postCreated.emit(post);
   }
 
 }
