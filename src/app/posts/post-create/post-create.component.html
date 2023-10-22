@@ -1,0 +1,15 @@
+<h2>Post Create Component</h2>
+
+<!-- 4. [(ng-model)]="property"   also called 'data binding'  or two way binding-->
+<!--<textarea rows="6" [value]="newPost"></textarea>-->
+
+<!--ini yang pakai ng-model -->
+<textarea rows="6" [(ngModel)]="enteredValue"></textarea>
+
+<hr />
+
+<!-- 3. (event)="handler"  or event binding-->
+<button (click)="onAddPost()">Save Post</button>
+
+<!-- 1. {{value}} or interpolation -->
+<p>{{ newPost }}</p>
