@@ -1,5 +1,6 @@
+<h2>Post Create Component</h2>
+
 <mat-card>
-  <h2>Post Create Component</h2>
 
   <!-- 4. [(ng-model)]="property"   also called 'data binding'  or two way binding-->
   <!--<textarea rows="6" [value]="newPost"></textarea>-->
@@ -11,7 +12,7 @@
     <hr />
 
     <!-- 3. (event)="handler"  or event binding-->
-    <button (click)="onAddPost()">Save Post</button>
+    <button mat-raised-button color="accent" (click)="onAddPost()">Save Post</button>
   </mat-form-field>
 
   <!-- 1. {{value}} or interpolation -->
