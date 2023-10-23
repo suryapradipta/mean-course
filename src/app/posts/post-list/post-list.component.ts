@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {PostModel} from "../post.model";
 
 @Component({
   selector: 'app-post-list',
@@ -22,5 +23,5 @@ export class PostListComponent {
   ];*/
 
   //Bind data from the outside(direct parent) to this component
-  @Input() posts = [];
+  @Input() posts: PostModel[] = [];
 }

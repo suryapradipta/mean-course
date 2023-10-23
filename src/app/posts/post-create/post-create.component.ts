@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
+import {PostModel} from "../post.model";
 
 @Component({
   selector: 'app-post-create',
@@ -11,12 +12,12 @@ export class PostCreateComponent {
   enteredContent = '';
 
   // decorator ‘output’ to pass data from child to parent component
-  @Output() postCreated = new EventEmitter();
+  @Output() postCreated = new EventEmitter<PostModel>();
 
 
   // handler
   onAddPost() {
-    const post = {
+    const post : PostModel = {
       title: this.enteredTitle,
       content: this.enteredContent,
     }
