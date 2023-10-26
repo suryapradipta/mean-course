@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {PostModel} from "../post.model";
 import {NgForm} from "@angular/forms";
+import {PostsService} from "../posts.service";
 
 @Component({
   selector: 'app-post-create',
@@ -12,23 +13,13 @@ export class PostCreateComponent {
   enteredTitle = '';
   enteredContent = '';
 
-  // decorator ‘output’ to pass data from child to parent component
-  @Output() postCreated = new EventEmitter<PostModel>();
+  constructor(public postsService : PostsService) {}
 
-
-  // receive form of type NgForm, which a lot of information from the form
-  onAddPost(form : NgForm) {
-    //prevent form submission
+  onAddPost(form: NgForm) {
     if(form.invalid) {
       return;
     }
-
-    const post : PostModel = {
-      // give access to the value of form using these
-      title: form.value.title,
-      content: form.value.content,
-    }
-    this.postCreated.emit(post);
+    this.postsService.addPost(form.value.title, form.value.content);
   }
 
 }

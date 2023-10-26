@@ -1,27 +1,20 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PostModel} from "../post.model";
+import {PostsService} from "../posts.service";
 
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
-export class PostListComponent {
-  /*posts = [
-    {
-      title: 'First Post',
-      content: '1 This is the first posts\' content'
-    },
-    {
-      title: 'Second Post',
-      content: '2 This is the first posts\' content'
-    },
-    {
-      title: 'Third Post',
-      content: '3 This is the first posts\' content'
-    }
-  ];*/
+export class PostListComponent implements OnInit{
 
-  //Bind data from the outside(direct parent) to this component
-  @Input() posts: PostModel[] = [];
+   posts: PostModel[] = [];
+
+   constructor(public postsService: PostsService) {
+   }
+
+   ngOnInit() {
+     this.posts = this.postsService.getPosts();
+   }
 }
