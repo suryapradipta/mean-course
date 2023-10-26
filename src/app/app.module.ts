@@ -13,6 +13,14 @@ import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { PostListComponent } from './posts/post-list/post-list.component';
 import {MatExpansionModule} from "@angular/material/expansion";
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  {path: 'create', component: PostCreateComponent},
+  {path: 'list', component: PostListComponent}
+
+];
+
 
 @NgModule({
   declarations: [
@@ -30,7 +38,10 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    RouterModule.forRoot(
+      appRoutes
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent]
