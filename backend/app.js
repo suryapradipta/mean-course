@@ -2,9 +2,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const Post = require('./models/post');
+const mongoose = require('mongoose');
 
 const app = express();
 
+const username = encodeURIComponent("suryapradipta8");
+const password = encodeURIComponent("");
+mongoose.connect("mongodb+srv://suryapradipta8:YbD9iQZZnpj27RNN@cluster0.o16ojiv.mongodb.net/node-angular?retryWrites=true&w=majority")
+  .then(()=>{
+    console.log("connected to database");
+  })
+  .catch(()=>{
+    console.log("connection failed");
+  })
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -14,6 +24,7 @@ app.post('/api/posts', (req, res, next) => {
     title: req.body.title,
     content: req.body.content
   });
+  post.save();
 
   console.log(post);
   res.status(201).json({
