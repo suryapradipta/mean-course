@@ -14,11 +14,11 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import { PostListComponent } from './posts/post-list/post-list.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import { RouterModule, Routes } from '@angular/router';
+import {HttpClientModule} from "@angular/common/http";
 
 const appRoutes: Routes = [
   {path: 'create', component: PostCreateComponent},
   {path: 'list', component: PostListComponent}
-
 ];
 
 
@@ -42,6 +42,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
     ),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

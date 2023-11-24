@@ -1,15 +1,41 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
 const app = express();
 
-app.use((req, res, next)=>{
-  console.log('First middleware');
-  next();
-})
+app.use(bodyParser.json());
+app.use(cors());
 
-app.use((req,res,next)=>{
-  res.send('Hello from express');
+
+app.post('/api/posts', (req, res, next) => {
+  const post = req.body;
+  console.log(post);
+  res.status(201).json({
+    message: 'Post added successfully'
+  });
 });
 
+app.use('/api/posts', (req, res, next) => {
+  const posts = [
+    {
+      id: 'id1',
+      title: 'First ever side post',
+      content: 'This is coming from the server'
+    },
+    {
+      id: 'id1',
+      title: 'First ever side post',
+      content: 'This is coming from the server'
+    },
+  ];
+
+  // chaining the status method to json method
+  res.status(200).json({
+    message: 'Post fetched successfully',
+    posts: posts
+  });
+});
 
 
 module.exports = app;
