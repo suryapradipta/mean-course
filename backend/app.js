@@ -6,8 +6,6 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-const username = encodeURIComponent("suryapradipta8");
-const password = encodeURIComponent("");
 mongoose.connect("mongodb+srv://suryapradipta8:YbD9iQZZnpj27RNN@cluster0.o16ojiv.mongodb.net/node-angular?retryWrites=true&w=majority")
   .then(()=>{
     console.log("connected to database");
@@ -32,24 +30,19 @@ app.post('/api/posts', (req, res, next) => {
   });
 });
 
-app.use('/api/posts', (req, res, next) => {
-  const posts = [
-    {
-      id: 'id1',
-      title: 'First ever side post',
-      content: 'This is coming from the server'
-    },
-    {
-      id: 'id1',
-      title: 'First ever side post',
-      content: 'This is coming from the server'
-    },
-  ];
+app.get('/api/posts', (req, res, next) => {
+  Post.find().then(documents =>{
+    res.status(200).json({
+      message: 'Post fetched successfully',
+      posts: documents
+    });
+  })
+});
 
-  // chaining the status method to json method
-  res.status(200).json({
-    message: 'Post fetched successfully',
-    posts: posts
+app.delete('/api/posts/:id', (req, res, next) => {
+  Post.deleteOne({_id: req.params.id}).then(result=>{
+    console.log(result);
+    res.status(200).json({message: "Post deleted!"});
   });
 });
 
