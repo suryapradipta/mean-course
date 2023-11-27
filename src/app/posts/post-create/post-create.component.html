@@ -1,12 +1,13 @@
 <h2>Post Create Component</h2>
 
 <mat-card>
-  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  <form (submit)="onSavePost(postForm)" #postForm="ngForm">
     <mat-form-field>
       <input
         matInput
         type="text"
         name="title"
+        [ngModel]="post?.title"
         ngModel
         required
         minlength="3"
@@ -20,6 +21,7 @@
         matInput
         rows="4"
         name="content"
+        [ngModel]="post?.content"
         ngModel
         required
         #content="ngModel"

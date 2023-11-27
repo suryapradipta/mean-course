@@ -17,6 +17,16 @@ export class PostsService {
   constructor(private http: HttpClient) {
   }
 
+  getPost(id: string){
+    return{...this.posts.find(p=> p.id===id)};
+  }
+
+  updatePost(id:string, title: string, content: string){
+    const post: PostModel= {id: id, title:title, content:content};
+    this.http.put('http://localhost:3000/api/posts/' + id,post)
+      .subscribe(response=>console.log(response));
+  }
+
 
   //new backend
   getPosts() {
@@ -62,4 +72,6 @@ export class PostsService {
         this.postsUpdated.next([...this.posts]);
       })
   }
+
+
 }

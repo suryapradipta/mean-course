@@ -18,7 +18,9 @@ import {HttpClientModule} from "@angular/common/http";
 
 const appRoutes: Routes = [
   {path: 'create', component: PostCreateComponent},
-  {path: 'list', component: PostListComponent}
+  {path: 'list', component: PostListComponent},
+  {path: 'edit/:postId', component: PostCreateComponent}
+
 ];
 
 
