@@ -22,18 +22,21 @@ app.post('/api/posts', (req, res, next) => {
     title: req.body.title,
     content: req.body.content
   });
-  post.save().then(createdPost=>{
-    console.log(post);
-    res.status(200).json({
+
+  post.save().then(createdPost => {
+    console.log(createdPost); // Note: Use createdPost instead of post
+    res.status(201).json({
       message: 'Post added successfully',
       postId: createdPost._id
     });
-  });
-
-  console.log(post);
-  res.status(201).json({
-    message: 'Post added successfully'
-  });
+  })
+    .catch(error => {
+      // Handle the error appropriately
+      console.error(error);
+      res.status(500).json({
+        message: 'An error occurred while saving the post'
+      });
+    });
 });
 
 app.get('/api/posts', (req, res, next) => {
